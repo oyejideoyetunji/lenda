@@ -1,0 +1,72 @@
+.input-container {
+    @extend .w-100;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    @mixin border($color: false) {
+        @if $color {
+            border: 1px solid $color;
+        } @else {
+            border: none;
+        }
+    }
+
+    .no-border {
+        @include border;
+    }
+
+    .focus-border {
+        &:focus {
+            @include border($color-primary);
+        }
+    }
+
+    .error-border {
+        @include border($color-danger);
+        &:focus {
+            @include border($color-danger);
+        }
+    }
+
+    .label {
+        @extend .block;
+        @extend .p-b-4;
+        @include small-txt-mixin;
+        color: $color-blueGrey;
+        font-weight: 500;
+    }
+
+    .error {
+        @extend .block;
+        @extend .p-t-4;
+        @include small-txt-mixin;
+        color: $color-danger;
+        font-weight: 400;
+    }
+
+    .input-wrapper {
+        @extend .w-100;
+        height: fit-content;
+        position: relative;
+
+        .position-wrp {
+            position: absolute;
+        }
+    }
+
+    input {
+        @extend .w-100;
+        outline: none;
+        border-radius: 4px;
+        font-size: 14px;
+        color: $color-blue1;
+        @include border($color-borderGrey);
+
+        &::placeholder {
+            font-size: 13px;
+            font-weight: 200;
+            color: $color-blueGrey;
+        }
+    }
+}

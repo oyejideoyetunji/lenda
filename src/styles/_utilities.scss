@@ -1,0 +1,271 @@
+$percents: (10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 100);
+$spaces: (0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 28, 32, 40, 48);
+$sides: (top, bottom, left, right);
+
+
+// spacing
+
+.w-fit {
+    width: fit-content;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+@each $percent in $percents {
+    .w-#{$percent} {
+        width: #{percentage($percent / 100)};
+    }
+
+    .h-#{$percent} {
+        height: #{percentage($percent / 100)};
+    }
+}
+
+@each $space in $spaces {
+      @each $side in $sides {
+            .m-#{str-slice($side, 0, 1)}-#{$space} {
+                margin-#{$side}: #{$space}px;
+            }
+
+            .p-#{str-slice($side, 0, 1)}-#{$space} {
+                padding-#{$side}: #{$space}px;
+            }
+      }
+}
+
+@each $space in $spaces {
+  .m-#{$space} {
+    margin: #{$space}px;
+  }
+  
+  .p-#{$space} {
+    padding: #{$space}px;
+  }
+  
+  .m-x-#{$space} {
+    margin-left: #{$space}px;
+    margin-right: #{$space}px;
+  }
+  
+  .p-x-#{$space} {
+    padding-left: #{$space}px;
+    padding-right: #{$space}px;
+  }
+  
+  .m-y-#{$space} {
+    margin-top: #{$space}px;
+    margin-bottom: #{$space}px;
+  }
+  
+  .p-y-#{$space} {
+    padding-top: #{$space}px;
+    padding-bottom: #{$space}px;
+  }
+}
+
+// media queries
+
+@mixin respond($breakpoint) {
+    @if($breakpoint == xs)  {
+      @media (min-width: $breakpoint-xs) { @content };
+    }
+    @if($breakpoint == sm)  {
+      @media (min-width: $breakpoint-sm) { @content };
+    }
+    @if($breakpoint == md)  {
+      @media (min-width: $breakpoint-md) { @content };
+    }
+    @if($breakpoint == lg)  {
+      @media (min-width: $breakpoint-lg) { @content };
+    }
+    @if($breakpoint == xl)  {
+      @media (min-width: $breakpoint-xl) { @content };
+    }
+    @if($breakpoint == xxl)  {
+      @media (min-width: $breakpoint-xxl) { @content };
+    }
+}
+
+
+// layout 
+
+.hide {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+// flex
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.self-align-end {
+    align-self: flex-end;
+}
+
+.self-align-start {
+    align-self: flex-start;
+}
+
+
+@mixin flex-direction($direction: false) {
+    @if $direction {
+        flex-direction: $direction;
+    }
+}
+
+@mixin flex-align($align: false) {
+    @if $align {
+        align-items: $align;
+    }
+}
+
+@mixin flex-justify($justify: false) {
+    @if $justify {
+        justify-content: $justify;
+    }
+}
+
+
+// Typography
+@mixin h2-mixin {
+    font-size: 2rem;
+
+    @include respond(lg) {
+        font-size: 2.5rem;
+    }
+}
+
+@mixin h2-mixin {
+    font-size: 1.8rem;
+
+    @include respond(lg) {
+        font-size: 2rem;
+    }
+}
+
+@mixin h3-mixin {
+    font-size: 1.5rem;
+
+    @include respond(lg) {
+        font-size: 1.8rem;
+    }
+}
+
+@mixin h4-mixin {
+    font-size: 1.3rem;
+
+    @include respond(lg) {
+        font-size: 1.5rem;
+    }
+}
+
+@mixin h5-mixin {
+    font-size: 1.1rem;
+
+    @include respond(lg) {
+        font-size: 1.3rem;
+    }
+}
+
+@mixin  txt-mixin {
+    font-size: 1rem;
+}
+
+@mixin  small-txt-mixin {
+    font-size: 0.8rem;
+}
+
+.layout-admin-body-padding {
+    padding-right: 16px;
+    padding-left: 16px;
+
+    @include respond(xs) {
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+
+    @include respond(md) {
+        padding-right: 22px;
+        padding-left: 22px;
+    }
+
+    @include respond(xl) {
+        padding-left: 38px;
+        padding-right: 38px;
+    }
+}
+
+.auto-flow-x {
+    overflow-x: auto;
+}
+
+.auto-flow-y {
+    overflow-y: auto;
+}
+
+
+.no-flow-y {
+    overflow-y: unset;
+}
+
+.card {
+    background-color: $color-white;
+    border: 1px solid $color-card-border;
+    box-shadow: $card-shadow;
+    border-radius: 2px;
+}
+
+.page-loader {
+    width: fit-content;
+    height: fit-content;
+    font-size: 3rem;
+    color: $color-primary;
+}
+
+.request-error {
+    @include txt-mixin;
+    color: $color-danger;
+    text-align: center
+}
+
+.empty-response {
+    @include txt-mixin;
+    color: $color-blueGrey;
+    font-weight: 400;
+    text-align: center
+}
